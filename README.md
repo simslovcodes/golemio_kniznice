@@ -30,7 +30,3 @@ The Golemio API requires an access token, which is stored securely as a reposito
 ## Notes
 
 You don’t have to wait until the scheduled time – you can also manually trigger the workflow anytime from the **Actions** tab on GitHub by selecting the workflow and clicking **Run workflow**.
-
----
-
-📬 Questions or ideas for expansion? Feel free to open an issue!
