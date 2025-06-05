@@ -1,0 +1,30 @@
+name: Daily Golemio Libraries Update
+
+on:
+  schedule:
+    # Runs daily at 7:00 AM Prague summer time 
+    - cron: '0 5 * * *'  
+  workflow_dispatch:  # manual trigger from GitHub UI
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas
+
+      - name: Run script
+        env:
+          GOLEMIO_API_KEY: ${{ secrets.GOLEMIO_API_KEY }}
+        run: python fetch_libraries.py
