@@ -2,8 +2,8 @@ name: Daily Golemio Libraries Update
 
 on:
   schedule:
-    # Runs daily at 7:00 AM Prague summer time 
-    - cron: '0 5 * * *'  
+    # Runs daily at 7:00 AM Prague summer time (UTC+2 is 5:00 UTC during summer)
+    - cron: '0 5 * * *'
   workflow_dispatch:  # manual trigger from GitHub UI
 
 jobs:
@@ -28,3 +28,10 @@ jobs:
         env:
           GOLEMIO_API_KEY: ${{ secrets.GOLEMIO_API_KEY }}
         run: python fetch_libraries.py
+
+      - name: Upload CSV artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: libraries-data
+          path: libraries.csv
+          retention-days: 1 # saves only fresh csv each day
