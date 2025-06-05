@@ -30,8 +30,8 @@ jobs:
         run: python fetch_libraries.py
 
       - name: Upload CSV artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: libraries-data
           path: libraries.csv
-          retention-days: 1 # saves only fresh csv each day
+          retention-days: 1 # keep only latest csv of the day
